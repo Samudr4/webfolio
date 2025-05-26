@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Creative Light Theme */
+    --background: 0 0% 98%; /* Almost White */
+    --foreground: 240 10% 3.9%; /* Darkest Blue-Gray */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 260 70% 55%; /* Vibrant Purple */
+    --primary-foreground: 0 0% 98%; /* Almost White for text on primary */
+
+    --secondary: 300 60% 90%; /* Light Lilac/Pink */
+    --secondary-foreground: 300 50% 25%; /* Darker Lilac/Pink for text */
+
+    --muted: 240 5% 90%; /* Lighter Gray */
+    --muted-foreground: 240 5% 45%; /* Medium Gray */
+
+    --accent: 180 70% 45%; /* Teal/Cyan */
+    --accent-foreground: 0 0% 98%; /* Almost White for text on accent */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 88%; /* Light Gray border */
+    --input: 240 5.9% 92%; /* Slightly lighter gray for input */
+    --ring: 260 70% 65%; /* Lighter Purple for focus rings */
+    
+    --chart-1: 260 70% 55%; /* Primary */
+    --chart-2: 180 70% 45%; /* Accent */
+    --chart-3: 330 80% 60%; /* Pinkish */
+    --chart-4: 45 90% 55%;  /* Orange */
+    --chart-5: 210 70% 50%; /* Blue */
+    --radius: 0.75rem; /* Slightly more rounded */
+  }
+
+  .dark {
+    /* Creative Dark Theme */
+    --background: 240 10% 10%; /* Very Dark Blue-Gray */
+    --foreground: 0 0% 95%; /* Light Gray, almost white */
+
+    --card: 240 8% 15%; /* Darker Blue-Gray for cards */
+    --card-foreground: 0 0% 95%;
+
+    --popover: 240 8% 12%; /* Even darker for popovers */
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 260 75% 65%; /* Lighter Vibrant Purple */
+    --primary-foreground: 240 5% 98%; /* Very light gray for text on primary */
+
+    --secondary: 300 50% 20%; /* Dark Lilac/Pink */
+    --secondary-foreground: 300 60% 85%; /* Lighter Lilac/Pink for text */
+
+    --muted: 240 5% 20%; /* Dark Gray */
+    --muted-foreground: 240 5% 65%; /* Lighter Gray for muted text */
+
+    --accent: 180 70% 55%; /* Brighter Teal/Cyan */
+    --accent-foreground: 240 5% 98%; /* Very light gray for text on accent */
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 25%; /* Dark Gray border */
+    --input: 240 5% 22%; /* Slightly darker gray for input */
+    --ring: 260 75% 70%; /* Lighter Purple for focus rings */
+    
+    --chart-1: 260 75% 65%;
+    --chart-2: 180 70% 55%;
+    --chart-3: 330 80% 70%;
+    --chart-4: 45 90% 65%;
+    --chart-5: 210 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    @apply transition-colors duration-300;
+  }
+  ::selection {
+    @apply bg-primary/70 text-primary-foreground;
+  }
+
+  /* Basic Blog Content Styling */
+  .blog-content {
+    @apply text-lg leading-relaxed;
+  }
+  .blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4, .blog-content h5, .blog-content h6 {
+    @apply font-semibold text-foreground mb-4 mt-8 first:mt-0;
+    /* Specific heading styles will be picked up from Tailwind's prose or explicit classes in content */
+  }
+  .blog-content h1 { @apply text-4xl; }
+  .blog-content h2 { @apply text-3xl border-b border-border pb-2; } /* Default h2 already styled in content */
+  .blog-content h3 { @apply text-2xl; }
+  .blog-content h4 { @apply text-xl; }
+  .blog-content p {
+    @apply mb-6; /* Increased paragraph bottom margin */
+  }
+  .blog-content a {
+    @apply text-accent hover:underline;
+  }
+  .blog-content ul, .blog-content ol {
+    @apply mb-6 pl-6; /* Increased list bottom margin and padding */
+  }
+  .blog-content li {
+    @apply mb-2; /* Spacing between list items */
+  }
+  .blog-content blockquote {
+    @apply border-l-4 border-primary pl-4 italic text-muted-foreground my-6;
+  }
+  .blog-content pre {
+    @apply bg-muted/70 dark:bg-muted/40 p-4 rounded-lg shadow-sm overflow-x-auto my-6 text-sm;
+  }
+  .blog-content code:not(pre > code) { /* Inline code */
+    @apply bg-secondary/50 dark:bg-secondary/30 text-secondary-foreground px-1.5 py-0.5 rounded-md text-sm;
+  }
+  .blog-content hr {
+    @apply my-8 border-border;
+  }
+  .blog-content table {
+    @apply w-full my-6 border-collapse border border-border;
+  }
+  .blog-content th, .blog-content td {
+    @apply border border-border p-3 text-left;
+  }
+  .blog-content th {
+    @apply bg-muted/50 dark:bg-muted/20 font-semibold;
+  }
+  .blog-content img {
+    @apply rounded-lg shadow-md my-6 max-w-full h-auto;
+  }
+
+}
+
+/* Subtle animation for page content */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Creative Card Hover */
+.creative-card-hover {
+  @apply transition-all duration-300 ease-out;
+}
+.creative-card-hover:hover {
+  @apply transform -translate-y-2 scale-[1.03];
+  box-shadow: 0 0 30px -5px hsl(var(--primary)/0.25), 0 0 20px -7px hsl(var(--accent)/0.2);
+}
+.dark .creative-card-hover:hover {
+  box-shadow: 0 0 40px -5px hsl(var(--primary)/0.3), 0 0 25px -7px hsl(var(--accent)/0.25);
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-muted/50;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/70 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+}
+
+/* Animations from styled-jsx in page.tsx */
+@keyframes gradient-xy {
+  0%, 100% {
+    background-size: 400% 400%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+.animate-gradient-xy {
+  animation: gradient-xy 15s ease infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out;
+}
+
+@keyframes pulse-slower {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.03); }
+}
+.animate-pulse-slower {
+  animation: pulse-slower 10s infinite ease-in-out;
+}
+
+@keyframes pulse-medium {
+  0%, 100% { opacity: 0.6; transform: scale(1) rotate(45deg); }
+  50% { opacity: 0.4; transform: scale(1.04) rotate(50deg); }
+}
+.animate-pulse-medium {
+  animation: pulse-medium 6s infinite ease-in-out;
+}
+
+/* Additional global styles can go here */
+
+    
