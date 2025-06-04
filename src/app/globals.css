@@ -220,4 +220,14 @@
 
 /* Additional global styles can go here */
 
+/* Custom cursor */
+* {
+  cursor: url('/assets/cursor.cur'), auto;
+}
+
+/* Keep default cursor for interactive elements */
+a, button, [role="button"], input, select, textarea {
+  cursor: url('/assets/cursor.cur'), pointer;
+}
+
     

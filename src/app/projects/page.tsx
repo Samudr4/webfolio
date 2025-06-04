@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,25 +12,33 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    title: "AI-Assamese-Dictionary",
-    description: "অসমীয়া অভিধান is a sleek web app showcasing an ultra-fast Bi-Directional Lookup that lets users type in Assamese or English and instantly receive accurate translations. Its smart auto-suggest and fuzzy matching guarantee the right result even with approximate spellings, while the built-in phonetic guide ensures users can pronounce words confidently. Perfect for a portfolio, this project highlights both user-centric design and robust functionality.",
-    imageUrl: "https://placehold.co/600x400.png",
+    title: "Assamese Dictionary",
+    description: "অসমীয়া অভিধান/Assamese-Dictionary is a sleek web app showcasing an ultra-fast Bi-Directional Lookup that lets users type in Assamese or English and instantly receive accurate translations. Its smart auto-suggest and fuzzy matching guarantee the right result even with approximate spellings, while the built-in phonetic guide ensures users can pronounce words confidently.",
+    imageUrl: "/assets/AD-logo.png",
     imageHint: "futuristic online store AI",
-    tags: ["Next.js", "Genkit", "AI","TypeScript", "Tailwind CSS"],
+    tags: ["Next.js", "Google Genkit", "AI","TypeScript", "Tailwind CSS"],
     liveLink: "https://assamese-dictionary.vercel.app/",
   },
   {
-    title: "Real-time Collaborative Task Manager",
-    description: "A collaborative task management tool with real-time updates using Firebase. Features drag-and-drop interface, notifications, and advanced project organization.",
-    imageUrl: "https://placehold.co/600x400.png",
+    title: "Travel website with Dashboard",
+    description: "A full-stack web application that lets users explore and book exciting adventure tours in the North East region. The backend handles tour bookings, user accounts, and secure payments, while the frontend offers a smooth, user-friendly interface for browsing and reserving tours. It’s designed to make planning your next adventure easy and enjoyable!",
+    imageUrl: "/assets/travel-logo.png",
     imageHint: "team collaboration interface",
-    tags: ["React", "Firebase", "Material UI", "Real-time"],
+    tags: ["TypeScript","React","MongoDB","Razorpay","TailwindCSS ", "RESTful APIs"],
     liveLink: "#",
     repoLink: "#",
   },
   {
-    title: "Webfolio V2 (This Site!)",
-    description: "My personal portfolio website, built with Next.js, ShadCN UI, Tailwind CSS and Genkit. Focused on showcasing skills, projects, and blog content with a creative flair.",
+    title: "Code trasnlator)",
+    description: "simple code trasnlator withe help of gen AI",
+    imageUrl: "https://placehold.co/600x400.png",
+    imageHint: "modern portfolio design",
+    tags: ["Next.js", "ShadCN UI", "TailwindCSS", "Genkit"],
+    liveLink: "/", 
+  },
+  {
+    title: "Ongoing Project)",
+    description: "Avalable soon",
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "modern portfolio design",
     tags: ["Next.js", "ShadCN UI", "TailwindCSS", "Genkit"],
@@ -53,50 +60,52 @@ export default function ProjectsPage() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, index) => (
           <Card 
             key={index} 
-            className="group flex flex-col overflow-hidden rounded-xl shadow-lg creative-card-hover bg-card/80 backdrop-blur-sm animate-fadeIn"
+            className="group flex flex-col overflow-hidden rounded-xl shadow-sm hover:shadow-md creative-card-hover bg-card/60 backdrop-blur-sm animate-fadeIn"
             style={{ animationDelay: `${0.4 + index * 0.1}s` }}
           >
-            <div className="relative h-72 w-full overflow-hidden">
-              <Image
-                src={project.imageUrl}
-                alt={project.title}
-                layout="fill"
-                objectFit="cover"
-                data-ai-hint={project.imageHint}
-                className="transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-75 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 p-6">
-                <CardTitle className="text-3xl font-bold text-white group-hover:text-primary transition-colors duration-300 drop-shadow-lg">{project.title}</CardTitle>
+            <CardHeader className="p-4">
+              <div className="flex items-center gap-4">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-secondary/10">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <CardTitle className="text-xl font-medium text-foreground/90 group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
+                </div>
               </div>
-            </div>
+            </CardHeader>
             
-            <CardContent className="p-6 flex-grow">
-              <CardDescription className="text-md leading-relaxed mb-4 text-foreground/80">{project.description}</CardDescription>
-              <div className="flex flex-wrap gap-2">
+            <CardContent className="p-4 pt-0 flex-grow">
+              <CardDescription className="text-sm leading-relaxed mb-3 text-foreground/60">{project.description}</CardDescription>
+              <div className="flex flex-wrap gap-1.5">
                 {project.tags.map(tag => (
-                  <span key={tag} className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors duration-300">
+                  <span key={tag} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-normal bg-accent/5 text-accent/80 group-hover:bg-accent/10 group-hover:text-accent transition-colors duration-300">
                     {tag}
                   </span>
                 ))}
               </div>
             </CardContent>
-            <CardFooter className="flex justify-end space-x-4 p-6 border-t">
+            
+            <CardFooter className="p-4 pt-0 flex gap-2">
               {project.repoLink && (
-                <Button variant="outline" asChild className="transition-colors hover:border-primary/70 hover:text-primary hover:bg-primary/10 group/btn">
+                <Button variant="outline" size="sm" asChild className="transition-colors hover:border-primary/50 hover:text-primary/80 hover:bg-primary/5 group/btn">
                   <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                    <Github className="mr-2 h-5 w-5 group-hover/btn:text-primary transition-colors" /> Source Code
+                    <Github className="mr-2 h-4 w-4 group-hover/btn:text-primary/80 transition-colors" /> Source Code
                   </a>
                 </Button>
               )}
               {project.liveLink && (
-                 <Button asChild className="transition-transform hover:scale-105 group/btn">
+                <Button size="sm" asChild className="transition-transform hover:scale-105 group/btn bg-primary/80 hover:bg-primary/90">
                   <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                    Live Demo <ExternalLink className="ml-2 h-5 w-5 group-hover/btn:rotate-3 transition-transform" />
+                    Live Demo <ExternalLink className="ml-2 h-4 w-4 group-hover/btn:rotate-3 transition-transform" />
                   </a>
                 </Button>
               )}

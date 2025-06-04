@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback, useMemo } from "react";
 import { submitContactForm, type ContactFormState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,40 +36,51 @@ export function ContactForm() {
     }
   }, [state?.success]);
 
-  // Helper to get field-specific error
-  const getFieldError = (fieldName: string) => {
+  const getFieldError = useCallback((fieldName: string) => {
     if (!state || !state.issues || state.success) return null;
     const fieldErrors = state.issues.filter(issue => 
       state.fields && Object.keys(state.fields).includes(fieldName) && issue.toLowerCase().includes(fieldName)
     );
     return fieldErrors.length > 0 ? fieldErrors[0] : null;
-  };
+  }, [state]);
+
+  const renderErrorAlert = useMemo(() => {
+    if (!state?.message || state.success || !state.issues || state.issues.length === 0) return null;
+    
+    return (
+      <Alert variant="destructive" className="mb-6">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>
+          {state.message}
+          <ul className="list-disc list-inside mt-2">
+            {state.issues.map((issue, index) => (
+              <li key={index}>{issue}</li>
+            ))}
+          </ul>
+        </AlertDescription>
+      </Alert>
+    );
+  }, [state]);
+
+  const renderSuccessAlert = useMemo(() => {
+    if (!state?.success) return null;
+    
+    return (
+      <Alert variant="default" className="mb-6 bg-green-50 border-green-300 dark:bg-green-900/50 dark:border-green-700">
+        <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+        <AlertTitle className="text-green-700 dark:text-green-300">Success!</AlertTitle>
+        <AlertDescription className="text-green-600 dark:text-green-400">
+          {state.message}
+        </AlertDescription>
+      </Alert>
+    );
+  }, [state]);
 
   return (
     <form ref={formRef} action={formAction} className="space-y-6 max-w-xl mx-auto">
-      {state?.message && !state.success && state.issues && state.issues.length > 0 && (
-         <Alert variant="destructive" className="mb-6">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            {state.message}
-            <ul className="list-disc list-inside mt-2">
-              {state.issues.map((issue, index) => (
-                <li key={index}>{issue}</li>
-              ))}
-            </ul>
-          </AlertDescription>
-        </Alert>
-      )}
-      {state?.success && (
-        <Alert variant="default" className="mb-6 bg-green-50 border-green-300 dark:bg-green-900/50 dark:border-green-700">
-          <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
-          <AlertTitle className="text-green-700 dark:text-green-300">Success!</AlertTitle>
-          <AlertDescription className="text-green-600 dark:text-green-400">
-            {state.message}
-          </AlertDescription>
-        </Alert>
-      )}
+      {renderErrorAlert}
+      {renderSuccessAlert}
       
       <div className="space-y-2">
         <Label htmlFor="name" className="text-foreground/90">Full Name</Label>

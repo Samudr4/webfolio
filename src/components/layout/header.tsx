@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -55,26 +55,24 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 20);
   }, []);
 
-  const siteLogo = (
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const toggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen(prev => !prev);
+  }, []);
+
+  const siteLogo = useMemo(() => (
     <Link href="/" className="flex items-center gap-0 group" aria-label="Webfolio Home">
-      <div style={{ width: 90, height: 90 }} className="transition-transform duration-300 group-hover:scale-110">
-        <DotLottieReact 
-          src="/assets/cat.lottie" 
-          loop 
-          autoplay 
-        />
-      </div>
-      <span className="text-2xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">Webfolio</span>
+      <span className="text-2xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">Purp1e</span>
     </Link>
-  );
+  ), []);
 
   return (
     <header className={cn(
@@ -84,7 +82,7 @@ export function Header() {
       <div className="container mx-auto flex h-20 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {siteLogo}
         
-        <nav className="hidden md:flex items-center space-x-2"> {/* Reduced space-x for tighter boxy links */}
+        <nav className="hidden md:flex items-center space-x-2">
           {navItems.map((item) => (
             <NavLink key={item.href} href={item.href}>
               {item.label}
@@ -93,6 +91,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <div style={{ width: 100, height: 100 }} className="transition-transform duration-300 hover:scale-110">
+            <DotLottieReact 
+              src="/assets/cat.lottie" 
+              loop 
+              autoplay 
+            />
+          </div>
           <ThemeToggle />
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>

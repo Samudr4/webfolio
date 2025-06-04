@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    domains: [
+      'placehold.co',
+      'github.com'
+    ],
   },
 };
 

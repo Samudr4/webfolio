@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Feather } from "lucide-react";
+import { Github, Linkedin, X, Feather } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -8,15 +8,15 @@ export function Footer() {
       <div className="container mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <p className="text-center text-sm text-muted-foreground md:text-left md:col-span-1">
-            &copy; {currentYear} Webfolio. All rights reserved. <br className="sm:hidden"/>
-            Crafted with <span className="text-primary">&hearts;</span> and code.
+            &copy; {currentYear} purp1e portfolio. <br className="sm:hidden"/>
+            Crafted with 💜 and code.
           </p>
 
           <div className="flex items-center justify-center md:justify-end space-x-5 md:col-span-1">
             {[
-              { href: "https://github.com", label: "GitHub", icon: <Github className="h-6 w-6" /> },
-              { href: "https://linkedin.com", label: "LinkedIn", icon: <Linkedin className="h-6 w-6" /> },
-              { href: "https://twitter.com", label: "Twitter", icon: <Twitter className="h-6 w-6" /> },
+              { href: "https://github.com/samudr4", label: "GitHub", icon: <Github className="h-6 w-6" /> },
+              { href: "https://linkedin.com/in/samudr4/", label: "LinkedIn", icon: <Linkedin className="h-6 w-6" /> },
+              { href: "https://x.com/purp1exd", label: "Twitter", icon: <X className="h-6 w-6" /> },
             ].map(social => (
               <a 
                 key={social.label}

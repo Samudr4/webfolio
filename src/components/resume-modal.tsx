@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -11,7 +10,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, Mail, Phone, Linkedin, Github, Globe, Briefcase, GraduationCap, Lightbulb, Star, Code, Sparkles } from "lucide-react";
+import { X, Mail, Phone, Linkedin, Github, Globe, Briefcase, GraduationCap, Lightbulb, Star, Code, Sparkles, Instagram } from "lucide-react";
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -24,7 +23,7 @@ export function ResumeModal({ isOpen, setIsOpen }: ResumeModalProps) {
       <DialogContent className="max-w-3xl w-[90vw] h-[90vh] p-0 flex flex-col rounded-lg shadow-2xl bg-background">
         <DialogHeader className="p-6 border-b sticky top-0 bg-background z-10">
           <div className="flex justify-between items-center">
-            <DialogTitle className="text-2xl font-bold text-primary">Samudra Saikia - Resume</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-primary">Samudra K Saikia - Resume</DialogTitle>
             <DialogClose asChild>
               <Button variant="ghost" size="icon">
                 <X className="h-6 w-6" />
@@ -32,7 +31,7 @@ export function ResumeModal({ isOpen, setIsOpen }: ResumeModalProps) {
             </DialogClose>
           </div>
           <DialogDescription className="text-sm text-muted-foreground">
-            Full Stack Alchemist & UI/UX Enthusiast - Crafting digital excellence.
+            Full Stack Alchemist & Video Game enthusiast
           </DialogDescription>
         </DialogHeader>
         
@@ -42,23 +41,27 @@ export function ResumeModal({ isOpen, setIsOpen }: ResumeModalProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
               <div className="flex items-center space-x-3"> {/* Increased space-x */}
                 <Mail className="h-5 w-5 text-accent flex-shrink-0" />
-                <a href="mailto:hello@webfolio.com" className="text-foreground hover:text-primary text-sm">hello@webfolio.com</a>
+                <a href="mailto:hello@webfolio.com" className="text-foreground hover:text-primary text-sm">samudraksaikia@gmail.com</a>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-accent flex-shrink-0" />
-                <span className="text-foreground text-sm">(123) 456-7890</span>
+                <span className="text-foreground text-sm">+91 7002197726</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Linkedin className="h-5 w-5 text-accent flex-shrink-0" />
-                <a href="https://linkedin.com/in/samudrasaikia" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary text-sm">linkedin.com/in/samudrasaikia</a>
+                <a href="https://linkedin.com/in/samudr4/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary text-sm">linkedin.com/samudr4/</a>
               </div>
               <div className="flex items-center space-x-3">
                 <Github className="h-5 w-5 text-accent flex-shrink-0" />
-                <a href="https://github.com/samudrasaikia" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary text-sm">github.com/samudrasaikia</a>
+                <a href="https://github.com/samudr4" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary text-sm">github.com/samudr4</a>
               </div>
-              <div className="flex items-center space-x-3 sm:col-span-2"> {/* Allow website to take full width on small screens if needed */}
+              <div className="flex items-center space-x-3">
                 <Globe className="h-5 w-5 text-accent flex-shrink-0" />
                 <a href="https://webfolio.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary text-sm">webfolio.com</a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Instagram className="h-5 w-5 text-accent flex-shrink-0" />
+                <a href="https://instagram.com/samudr4.io" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary text-sm">instagram.com/samudr4.io</a>
               </div>
             </div>
           </section>
@@ -69,7 +72,7 @@ export function ResumeModal({ isOpen, setIsOpen }: ResumeModalProps) {
               <Lightbulb className="h-6 w-6 mr-2.5 text-primary" /> Professional Summary {/* Increased icon margin */}
             </h2>
             <p className="text-foreground/90">
-              Dynamic and innovative Full Stack Developer with 7+ years of experience in designing, developing, and deploying scalable web applications. Proven ability to lead projects, mentor teams, and translate complex requirements into user-friendly solutions. Passionate about leveraging cutting-edge technologies and agile methodologies to drive product success and deliver exceptional user experiences.
+              Dynamic and innovative Full Stack Developer with 2+ years of experience in designing, developing, and deploying scalable web applications. Proven ability to lead projects, mentor teams, and translate complex requirements into user-friendly solutions. Passionate about leveraging cutting-edge technologies and agile methodologies to drive product success and deliver exceptional user experiences.
             </p>
           </section>
 
@@ -81,35 +84,33 @@ export function ResumeModal({ isOpen, setIsOpen }: ResumeModalProps) {
             <div className="space-y-6">
               {[
                 {
-                  role: "Senior Frontend Developer",
-                  company: "Tech Solutions Inc.",
-                  period: "Jan 2021 - Present",
+                  role: "Freelance",
+                  period: "Jan 2019 - Present",
                   points: [
-                    "Led a team of 5 frontend developers, fostering a collaborative and high-performance environment.",
-                    "Architected and implemented a new micro-frontend architecture, improving scalability and development velocity by 30%.",
-                    "Drove adoption of Next.js and TypeScript, enhancing application performance and code quality.",
-                    "Collaborated with UX/UI teams to design and A/B test new features, resulting in a 15% increase in user engagement.",
+                    "Delivered custom web solutions for diverse clients across various industries",
+                    "Specialized in full-stack JavaScript development, building scalable applications, e-commerce platforms, and interactive web experiences",
+                    "Proficient in video editing and graphics design, I consistently met project timelines and technical requirements while maintaining high-quality standards.",
                   ],
                 },
                 {
-                  role: "Full Stack Developer",
-                  company: "Innovate Co.",
-                  period: "Jun 2018 - Dec 2020",
+                  role: "Senior Developer",
+                  company: "EncryptArx",
+                  period: "Jun 2024 - Present",
                   points: [
-                    "Developed and maintained full-stack applications using React, Node.js, Express, and PostgreSQL.",
-                    "Integrated third-party APIs (Stripe, Twilio) to enhance platform functionality.",
+                    "Developed and maintained full-stack applications using React, Node.js, Express, and MongoDB.",
+                    "Integrated third-party APIs (Razorpay, Twilio) to enhance platform functionality.",
                     "Optimized database queries and backend services, reducing API response times by 25%.",
                     "Participated in all phases of the SDLC, from requirements gathering to deployment and maintenance.",
                   ],
                 },
                 {
-                  role: "Junior Web Developer",
-                  company: "Startup Hub",
-                  period: "Aug 2016 - May 2018",
+                  role: "Head of Information Technology",
+                  company: "LDM Associates",
+                  period: "Aug 2021 - Dec 2023",
                   points: [
-                    "Contributed to the development of client websites using HTML, CSS, JavaScript, and PHP.",
+                    "Leveraged a diverse IT skillset encompassing web development, database administration",
                     "Assisted in creating responsive designs and ensuring cross-browser compatibility.",
-                    "Gained experience with version control (Git) and agile development practices.",
+                    "imultaneously enhancing digital presence through strategic social media, content creation, and video editing.",
                   ],
                 },
               ].map((job, idx) => (
@@ -133,14 +134,14 @@ export function ResumeModal({ isOpen, setIsOpen }: ResumeModalProps) {
             </h2>
             <div className="pl-4 border-l-2 border-primary/50 space-y-4"> {/* Added space-y */}
                <div>
-                <h3 className="text-lg font-semibold text-foreground">M.S. in Computer Science</h3>
-                <p className="text-md text-primary font-medium">University of Advanced Technology</p>
-                <p className="text-sm text-muted-foreground">Graduated: May 2016</p>
+                <h3 className="text-lg font-semibold text-foreground">B.Tech in Computer Science and Engineering</h3>
+                <p className="text-md text-primary font-medium">Girijananda Chowdhury University, Azara</p>
+                <p className="text-sm text-muted-foreground">Graduated: Aug 2023</p>
                </div>
                <div>
-                <h3 className="text-lg font-semibold text-foreground">B.S. in Software Engineering</h3>
-                <p className="text-md text-primary font-medium">State University</p>
-                <p className="text-sm text-muted-foreground">Graduated: May 2014</p>
+                <h3 className="text-lg font-semibold text-foreground">HS (Science)</h3>
+                <p className="text-md text-primary font-medium">Jnanjyoti Junior College, Narayanpur</p>
+                <p className="text-sm text-muted-foreground">Passed: June 2018</p>
               </div>
             </div>
           </section>
@@ -152,11 +153,11 @@ export function ResumeModal({ isOpen, setIsOpen }: ResumeModalProps) {
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3"> {/* Adjusted sm:grid-cols-3 for better fit */}
               {[
-                "JavaScript (ESNext)", "TypeScript", "React", "Next.js", "Node.js", "Express.js",
-                "Python", "Django", "Flask", "SQL (PostgreSQL, MySQL)", "NoSQL (MongoDB, Firebase)",
+                "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express.js",
+                "Python", "SQL (PostgreSQL, MySQL)", "NoSQL (MongoDB, Firebase)",
                 "HTML5", "CSS3", "Tailwind CSS", "Sass/SCSS", "RESTful APIs", "GraphQL",
                 "Docker", "Kubernetes", "AWS", "Firebase", "Git/GitHub", "CI/CD",
-                "Agile/Scrum", "JIRA", "UI/UX Design Principles", "Genkit", "AI Model Integration"
+                "UI/UX Design Principles", "Genkit", "AI Model Integration", "Video Editing", "Graphics Design"
               ].map(skill => (
                 <div key={skill} className="flex items-center space-x-2 bg-secondary/50 dark:bg-secondary/20 p-2.5 rounded-md shadow-sm hover:shadow-md transition-shadow">
                   <Code className="h-4 w-4 text-accent flex-shrink-0" />

@@ -1,13 +1,13 @@
-
 "use client"; // Required for useState
 
 import React, { useState } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Briefcase, Zap, Brain, Code, Users, FileText, Download } from "lucide-react";
+import { CheckCircle, Briefcase, Zap, Brain, Code, Users, FileText, Download, Palette } from "lucide-react";
 import type { Metadata } from 'next';
 import { ResumeModal } from "@/components/resume-modal"; 
+import { cn } from "@/lib/utils";
 
 // Metadata can't be used in client components directly this way if we need useState
 // Consider moving Metadata to a layout file or a server component parent if strict separation is needed.
@@ -18,36 +18,37 @@ import { ResumeModal } from "@/components/resume-modal";
 // };
 
 const skills = [
-  { name: "JavaScript (ES6+)", icon: <Code className="h-6 w-6 text-primary" /> },
+  { name: "JavaScript", icon: <Code className="h-6 w-6 text-primary" /> },
   { name: "TypeScript", icon: <Code className="h-6 w-6 text-primary" /> },
-  { name: "React & Next.js", icon: <Zap className="h-6 w-6 text-primary" /> },
+  { name: "React.js & Next.js", icon: <Zap className="h-6 w-6 text-primary" /> },
   { name: "Node.js & Express", icon: <Code className="h-6 w-6 text-primary" /> },
   { name: "Python", icon: <Brain className="h-6 w-6 text-primary" /> },
-  { name: "SQL & NoSQL Databases", icon: <Code className="h-6 w-6 text-primary" /> },
-  { name: "Cloud Platforms (AWS, Firebase)", icon: <Zap className="h-6 w-6 text-primary" /> },
-  { name: "Agile Methodologies", icon: <Users className="h-6 w-6 text-primary" /> },
+  { name: "MongoDB & PostgreSQL", icon: <Code className="h-6 w-6 text-primary" /> },
+  { name: "Cloud Services (AWS, Firebase, Appwrite)", icon: <Zap className="h-6 w-6 text-primary" /> },
+  { name: "AI & Genkit Integration", icon: <Zap className="h-6 w-6 text-primary" /> },
   { name: "UI/UX Principles", icon: <Brain className="h-6 w-6 text-primary" /> },
-  { name: "Genkit & AI Integration", icon: <Zap className="h-6 w-6 text-primary" /> },
+  { name: "Video Editing & Graphics Design", icon: <Palette className="h-6 w-6 text-primary" /> },
 ];
 
 const experiences = [
   {
-    role: "Senior Frontend Developer",
-    company: "Tech Solutions Inc.",
-    period: "2021 - Present",
-    description: "Led a team of frontend developers in creating responsive and performant web applications using React and Next.js. Championed innovative UI/UX solutions and mentored junior developers. Collaborated with UX/UI designers and backend teams to deliver high-quality products.",
+    role: "Freelance",
+    company: "Independent creative/developer",
+    period: "2019 - Present",
+    description: "Delivered custom web solutions for diverse clients across various industries. Specialized in full-stack JavaScript development, building scalable applications, e-commerce platforms, and interactive web experiences. Proficient in video editing and graphics design, I consistently met project timelines and technical requirements while maintaining high-quality standards.",
   },
   {
-    role: "Full Stack Developer",
-    company: "Innovate Co.",
-    period: "2018 - 2021",
-    description: "Developed and maintained full-stack applications, focusing on both client-side and server-side logic. Worked extensively with Node.js, Express, and various database technologies, contributing to significant feature enhancements.",
+    role: "Senior Developer",
+    company: "EncryptArx",
+    period: "2024 - Present",
+    description: "Led a team of frontend and backend developers in creating responsive and performant web applications using React and Next.js. Championed innovative UI/UX solutions and mentored junior developers. Collaborated with UX/UI designers and backend teams to deliver high-quality products.",
   },
+  
   {
-    role: "Junior Web Developer",
-    company: "Startup Hub",
-    period: "2016 - 2018",
-    description: "Gained foundational experience in web development, contributing to various projects and learning rapidly in a fast-paced startup environment. Developed a keen eye for detail and a passion for clean code.",
+    role: "Head of Information Technology",
+    company: "LDM Associates.",
+    period: "2021 - 2023",
+    description: "Leveraged a diverse IT skillset encompassing web development, database administration, and IT service management to ensure robust system performance and user support. Additionally, drove digital engagement through strategic corporate social media management, content creation, and video editing.",
   },
 ];
 
@@ -62,7 +63,7 @@ export default function AboutPage() {
             About <span className="text-primary">Me</span>
           </h1>
           <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto animate-fadeIn [animation-delay:0.2s]">
-            Driven by passion, fueled by coffee, creating impactful digital experiences.
+            Driven by passion, fueled by tea, creating impactful digital experiences.
           </p>
         </header>
 
@@ -71,7 +72,7 @@ export default function AboutPage() {
           <div className="lg:col-span-2 flex flex-col items-center animate-fadeIn [animation-delay:0.3s]">
             <div className="relative w-56 h-56 sm:w-72 sm:h-72 rounded-full overflow-hidden shadow-2xl border-4 border-primary mb-8 group">
               <Image
-                src="https://placehold.co/400x400.png"
+                src="/assets/logo.png"
                 alt="Developer's Portrait"
                 layout="fill"
                 objectFit="cover"
@@ -79,8 +80,8 @@ export default function AboutPage() {
                 className="transition-transform duration-500 group-hover:scale-110"
               />
             </div>
-            <h2 className="text-3xl font-semibold text-foreground">Samudra Saikia</h2>
-            <p className="text-lg text-primary mt-1">Full Stack Alchemist & UI/UX Enthusiast</p>
+            <h2 className="text-3xl font-semibold text-foreground">Samudra K Saikia</h2>
+            <p className="text-lg text-primary mt-1">Full Stack Alchemist & Video Game enthusiast</p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button 
                 onClick={() => setIsResumeModalOpen(true)} 
@@ -96,20 +97,20 @@ export default function AboutPage() {
           <div className="lg:col-span-3 animate-fadeIn [animation-delay:0.4s]">
             <Card className="shadow-xl bg-card/80 backdrop-blur-sm creative-card-hover">
               <CardHeader>
-                <CardTitle className="text-3xl text-primary">My Story & Philosophy</CardTitle>
+                <CardTitle className="text-3xl text-primary">My Philosophy</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 text-foreground/90 text-lg leading-relaxed">
                 <p>
-                  Hello! I'm Samudra, a results-oriented Full Stack Developer with an insatiable curiosity for crafting elegant and efficient digital solutions. My coding journey began with a spark of fascination for how the web works, blossoming into a profound passion for software artistry.
+                  Hello! I'm Samudra, a results-oriented Full Stack Developer with an insatiable curiosity for crafting elegant and efficient digital solutions. My coding journey began with a spark of fascination for how the web works, blossoming into a profound passion for software artistry. I've also explored the realm of Artificial Intelligence, integrating AI-driven technologies to create more intelligent and user-centric experiences.
                 </p>
                 <p>
-                  I've had the privilege of architecting and contributing to a spectrum of projects – from dynamic e-commerce ecosystems to intelligent AI-driven applications. Challenges are my catalysts for growth, and I relentlessly pursue opportunities to learn and innovate in this ever-evolving tech landscape.
+                  I've had the privilege of architecting and contributing to a spectrum of projects – from dynamic Tourism, EdTech, and e-commerce ecosystems to intelligent AI-driven applications. Challenges are my catalysts for growth, and I relentlessly pursue opportunities to learn and innovate in this ever-evolving tech landscape.
                 </p>
                 <p>
                   My development philosophy is rooted in <strong className="text-accent">clean code, user-centric design, and synergistic teamwork</strong>. I firmly believe that truly exceptional products emerge from the harmonious fusion of technical mastery and an empathetic understanding of user aspirations.
                 </p>
                 <p>
-                  When I'm not immersed in code, you'll find me exploring emerging technologies, contributing to open-source initiatives, or savoring a perfectly brewed cup of coffee.
+                  When I'm not immersed in code, you'll find me exploring emerging technologies, Playing or streaming Video Games, or savoring a perfectly brewed cup of tea.
                 </p>
               </CardContent>
             </Card>
@@ -140,18 +141,58 @@ export default function AboutPage() {
             {experiences.map((exp, index) => (
               <Card 
                 key={index} 
-                className="shadow-xl overflow-hidden creative-card-hover bg-card/80 backdrop-blur-sm animate-fadeIn"
+                className={cn(
+                  "shadow-xl overflow-hidden creative-card-hover bg-card/80 backdrop-blur-sm animate-fadeIn",
+                  exp.company === "LDM Associates." && "bg-[#d0e010]/10 dark:bg-[#d0e010]/20 dark:text-white",
+                  exp.company === "EncryptArx" && "bg-[#06122a]/10 dark:bg-[#06122a]/20"
+                )}
                 style={{animationDelay: `${0.8 + index * 0.1}s`}}
               >
-                <CardHeader className="bg-secondary/20 dark:bg-secondary/30 p-6">
+                <CardHeader className={cn(
+                  "p-6",
+                  exp.company === "LDM Associates." ? "bg-[#d0e010]/20 dark:bg-[#d0e010]/30" : 
+                  exp.company === "EncryptArx" ? "bg-[#06122a]/20 dark:bg-[#06122a]/30" :
+                  "bg-secondary/20 dark:bg-secondary/30"
+                )}>
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                    <CardTitle className="text-2xl text-secondary-foreground mb-1 sm:mb-0">{exp.role}</CardTitle>
+                    <div className="flex items-center gap-4">
+                      {exp.company === "LDM Associates." && (
+                        <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/20">
+                          <Image
+                            src="/assets/ldm-logo.jpg"
+                            alt="LDM Associates Logo"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
+                      {exp.company === "EncryptArx" && (
+                        <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white/20">
+                          <Image
+                            src="/assets/ecx-logo.jpg"
+                            alt="EncryptArx Logo"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
+                      <CardTitle className={cn(
+                        "text-2xl text-secondary-foreground mb-1 sm:mb-0",
+                        exp.company === "LDM Associates." && "dark:text-white"
+                      )}>{exp.role}</CardTitle>
+                    </div>
                     <p className="text-sm text-muted-foreground font-medium">{exp.period}</p>
                   </div>
-                  <p className="text-xl font-semibold text-primary">{exp.company}</p>
+                  <p className={cn(
+                    "text-xl font-semibold text-primary",
+                    exp.company === "LDM Associates." && "dark:text-white"
+                  )}>{exp.company}</p>
                 </CardHeader>
                 <CardContent className="p-6">
-                  <p className="text-foreground/90 text-lg leading-relaxed">{exp.description}</p>
+                  <p className={cn(
+                    "text-foreground/90 text-lg leading-relaxed",
+                    exp.company === "LDM Associates." && "dark:text-white/90"
+                  )}>{exp.description}</p>
                 </CardContent>
               </Card>
             ))}

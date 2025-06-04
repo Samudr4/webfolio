@@ -23,7 +23,7 @@ export default function Home() {
 
         <div className="container relative mx-auto px-4 text-center animate-fadeIn">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-foreground">
-            Welcome to <span className="text-primary drop-shadow-lg">Webfolio</span>
+            Hello, I'm <span className="text-primary drop-shadow-lg">Samudr4</span>
           </h1>
           <p className="mt-8 max-w-3xl mx-auto text-lg text-muted-foreground sm:text-xl md:text-2xl leading-relaxed">
             Embark on a journey through innovative projects, insightful articles, and discover the passion woven into every line of code.
@@ -36,7 +36,7 @@ export default function Home() {
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 border-2 border-foreground/20 hover:border-accent hover:bg-accent/10">
               <Link href="/about">
-                Meet the Developer
+                More About Me
               </Link>
             </Button>
           </div>
