@@ -1,6 +1,5 @@
-
 import { ContactForm } from "@/components/contact-form";
-import { Mail, Phone, MapPin, MessageSquareHeart } from "lucide-react";
+import { Mail, Phone, MapPin, MessageSquareHeart, MessageCircle } from "lucide-react";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,14 +25,15 @@ export default function ContactPage() {
           <div>
             <h2 className="text-3xl font-semibold text-foreground mb-4">Contact Information</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Feel free to reach out through the form or via the details below. I aim to respond within 24-48 hours.
+            Your thoughts and questions are always welcome! Feel free to share them through the form or the contact details below. I'll make sure a response reaches you soon !
             </p>
           </div>
           <div className="space-y-6">
             {[
-              { icon: <Mail className="h-7 w-7 text-primary" />, title: "Email", content: <a href="mailto:hello@webfolio.com" className="text-muted-foreground hover:text-primary transition-colors text-lg">hello@webfolio.com (Placeholder)</a> },
-              { icon: <Phone className="h-7 w-7 text-primary" />, title: "Phone", content: <p className="text-muted-foreground text-lg">(123) 456-7890 (Placeholder)</p> },
-              { icon: <MapPin className="h-7 w-7 text-primary" />, title: "Location", content: <p className="text-muted-foreground text-lg">San Francisco, CA (Placeholder)</p> },
+              { icon: <Mail className="h-7 w-7 text-primary" />, title: "Email", content: <a href="mailto:hello@webfolio.com" className="text-muted-foreground hover:text-primary transition-colors text-lg">samudraksaikia@gmail.com</a> },
+              { icon: <Phone className="h-7 w-7 text-primary" />, title: "Phone", content: <p className="text-muted-foreground text-lg">+91 7002197726  </p> },
+              { icon: <MessageCircle className="h-7 w-7 text-primary" />, title: "WhatsApp", content: <a href="https://wa.me/917002197726" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-lg">Chat on WhatsApp</a> },
+              { icon: <MapPin className="h-7 w-7 text-primary" />, title: "Location", content: <p className="text-muted-foreground text-lg">Guwahati, Assam</p> },
             ].map(item => (
               <div key={item.title} className="flex items-start space-x-4 p-4 bg-card/50 dark:bg-card/20 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex-shrink-0 mt-1 bg-primary/10 p-3 rounded-full">
@@ -50,7 +50,7 @@ export default function ContactPage() {
 
         <div className="md:col-span-3 animate-fadeIn [animation-delay:0.5s]">
           <h2 className="text-3xl font-semibold text-foreground mb-8 text-center md:text-left">Send Me a Message</h2>
-          <div className="p-8 bg-card/80 dark:bg-card/30 backdrop-blur-sm rounded-xl shadow-xl creative-card-hover">
+          <div className="p-10 bg-card/80 dark:bg-card/30 backdrop-blur-sm rounded-xl shadow-xl creative-card-hover">
             <ContactForm />
           </div>
         </div>

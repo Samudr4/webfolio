@@ -70,7 +70,7 @@ export function Header() {
 
   const siteLogo = useMemo(() => (
     <Link href="/" className="flex items-center gap-0 group" aria-label="Webfolio Home">
-      <span className="text-2xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">Purp1e</span>
+      <span className="text-2xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">Purp1eHaze</span>
     </Link>
   ), []);
 
