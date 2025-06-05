@@ -1,7 +1,8 @@
 'use client';
 
+import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Particles from "@/components/Particles";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Lightbulb, Code, UserCircle, Send, Zap, Palette, Star } from "lucide-react";
@@ -11,11 +12,9 @@ export default function Home() {
     <div className="flex flex-col items-center overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative w-full min-h-[80vh] md:min-h-screen py-24 md:py-32 flex items-center justify-center overflow-hidden">
-        {/* Animated Gradient Background */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 dark:from-primary/30 dark:via-secondary/15 dark:to-accent/30 opacity-70 animate-gradient-xy"></div>
-        </div>
-        
+        {/* Particles Component */}
+        <Particles />
+
         {/* Decorative Shapes */}
         <div className="absolute -top-20 -left-20 w-72 h-72 bg-primary/30 rounded-full filter blur-3xl opacity-50 animate-pulse-slow"></div>
         <div className="absolute -bottom-20 -right-10 w-80 h-80 bg-accent/30 rounded-full filter blur-3xl opacity-50 animate-pulse-slower"></div>
@@ -23,8 +22,9 @@ export default function Home() {
 
         <div className="container relative mx-auto px-4 text-center animate-fadeIn">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-foreground">
-            Hello, I'm <span className="text-primary drop-shadow-lg">Samudr4</span>
-          </h1>
+  Hello, I'm <span className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-foreground text-primary drop-shadow-lg glitch-text" data-text="Samudr4">Samudr4</span>
+</h1>
+
           <p className="mt-8 max-w-3xl mx-auto text-lg text-muted-foreground sm:text-xl md:text-2xl leading-relaxed">
             Embark on a journey through innovative projects, insightful articles, and discover the passion woven into every line of code.
           </p>
@@ -75,7 +75,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* Highlight Reel / Unique Selling Proposition */}
       <section className="w-full py-20 md:py-28 bg-muted/30">
         <div className="container mx-auto px-4 text-center">
@@ -101,20 +101,25 @@ export default function Home() {
       </section>
 
       {/* Call to Action - Contact */}
-      <section className="w-full py-20 md:py-28 bg-gradient-to-br from-accent/10 via-background to-secondary/10 dark:from-accent/20 dark:via-background dark:to-secondary/20">
-        <div className="container mx-auto px-4 text-center animate-fadeIn">
-          <Send className="h-16 w-16 text-primary mx-auto mb-8 transform group-hover:rotate-12 transition-transform duration-300" />
-          <h2 className="text-4xl font-bold text-foreground mb-6">Let's <span className="text-accent">Connect</span> & Create</h2>
-          <p className="max-w-xl mx-auto text-xl text-muted-foreground mb-10 leading-relaxed">
-            Have a project in mind, a question, or just want to say hi? I'd love to hear from you.
-          </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-xl hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 group px-10 py-6 text-lg">
-            <Link href="/contact">
-              Get In Touch <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
-        </div>
-      </section>
+<section className="relative w-full py-20 md:py-28 bg-gradient-to-br from-accent/10 via-background to-secondary/10 dark:from-accent/20 dark:via-background dark:to-secondary/20 overflow-hidden">
+  {/* Particles Component */}
+  <Particles />
+
+  <div className="container mx-auto px-4 text-center animate-fadeIn">
+    <Send className="h-16 w-16 text-primary mx-auto mb-8 transform group-hover:rotate-12 transition-transform duration-300" />
+    <h2 className="text-4xl font-bold text-foreground mb-6">Let's <span className="text-accent">Connect</span> & Create</h2>
+    <p className="max-w-xl mx-auto text-xl text-muted-foreground mb-10 leading-relaxed">
+      Have a project in mind, a question, or just want to say hi? I'd love to hear from you.
+    </p>
+    <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-xl hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 group px-10 py-6 text-lg">
+      <Link href="/contact">
+        Get In Touch <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+      </Link>
+    </Button>
+  </div>
+</section>
+
     </div>
   );
 }
+
