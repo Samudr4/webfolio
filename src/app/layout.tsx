@@ -29,7 +29,7 @@ const geistMono = Geist_Mono({
 //     template: '%s | Webfolio',
 //   },
 //   description: 'Webfolio: Showcasing innovative development projects, insightful blog posts, and professional skills with a creative touch.',
-//   // ... other metadata properties
+//   image: "/assets/favicon.png",
 // };
 
 
@@ -60,7 +60,9 @@ export default function RootLayout({
         {/* Default metadata - specific pages can override this */}
         <title>Webfolio | Creative Developer Portfolio</title>
         <meta name="description" content="Webfolio: Showcasing innovative development projects, insightful blog posts, and professional skills with a creative touch." />
-        <link rel="icon" href="/assets/animated-dog-favicon.gif" type="image/gif" />
+		<meta property="og:image" content="assets/favicon.png" />
+        <link rel="icon" href="/assets/favicon.png" type="image/png" />
+		
         {/* Add other common meta tags here if needed */}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-background font-sans`}>
