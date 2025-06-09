@@ -12,11 +12,8 @@ export default function Particles() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-
-    canvas.width = width;
-    canvas.height = height;
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
     type Particle = {
       x: number;
@@ -30,65 +27,55 @@ export default function Particles() {
       blinkPhase: number;
     };
 
-    // Reduced particle count to improve performance
-    const particleCount = 50;
+    const particlesArray: Particle[] = [];
+    const particleCount = 80;
     const purpleColors = [
-      "128,0,128",
+      "128,0,128",        // rgb without alpha for using dynamic alpha
       "138,43,226",
       "147,112,219",
       "186,85,211"
     ];
 
-    const particlesArray: Particle[] = [];
-
     for (let i = 0; i < particleCount; i++) {
-      const size = Math.random() * 2 + 1; // Slightly smaller particles
+      const size = Math.random() * 3 + 1;
       const x = Math.random() * width;
       const y = Math.random() * height;
       const color = purpleColors[Math.floor(Math.random() * purpleColors.length)];
-      const opacity = Math.random() * 0.5 + 0.5;
-      const blinkSpeed = 0.001 + Math.random() * 0.001; // Slower blinking speed range
-      const blinkPhase = Math.random() * Math.PI * 2;
+      const opacity = Math.random() * 0.5 + 0.5; // start opacity between 0.5 and 1
+      const blinkSpeed = 0.0015 + Math.random() * 0.0015; // slow blinking speed
+      const blinkPhase = Math.random() * Math.PI * 2; // random phase offset
       particlesArray.push({ x, y, size, baseX: x, baseY: y, color, opacity, blinkSpeed, blinkPhase });
     }
 
     const mouse = { x: null as number | null, y: null as number | null };
 
-    // Throttle mouse move updates for performance
-    let lastMouseUpdate = 0;
-    const MOUSE_UPDATE_INTERVAL = 50; // milliseconds
-
     function draw() {
+      if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
       const time = performance.now();
-
       particlesArray.forEach(p => {
+        // Calculate new opacity based on blink
         p.opacity = 0.5 + 0.5 * Math.sin(time * p.blinkSpeed + p.blinkPhase);
         ctx.beginPath();
         ctx.fillStyle = `rgba(${p.color},${p.opacity.toFixed(2)})`;
         ctx.shadowColor = `rgba(${p.color},${p.opacity.toFixed(2)})`;
-        ctx.shadowBlur = 4; // Reduced shadow for performance
+        ctx.shadowBlur = 8;
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Draw lines between particles with distance threshold
-      const maxDistance = 90;
-      ctx.lineWidth = 0.3;
-      for (let i = 0; i < particleCount; i++) {
-        for (let j = i + 1; j < particleCount; j++) {
-          const p1 = particlesArray[i];
-          const p2 = particlesArray[j];
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const dist = dx * dx + dy * dy;
-          if (dist < maxDistance * maxDistance) {
-            const distance = Math.sqrt(dist);
-            const alpha = 1 - distance / maxDistance;
+      // Draw lines between particles
+      for (let i = 0; i < particlesArray.length; i++) {
+        for (let j = i + 1; j < particlesArray.length; j++) {
+          const dx = particlesArray[i].x - particlesArray[j].x;
+          const dy = particlesArray[i].y - particlesArray[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) { // Adjust the distance threshold for line connections
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(${p1.color},${(alpha * p1.opacity).toFixed(2)})`;
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(${particlesArray[i].color}, ${particlesArray[i].opacity})`;
+            ctx.lineWidth = 0.5; // Line width
+            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
             ctx.stroke();
           }
         }
@@ -97,34 +84,20 @@ export default function Particles() {
 
     function update() {
       if (mouse.x === null || mouse.y === null) return;
-
-      const now = Date.now();
-      if (now - lastMouseUpdate < MOUSE_UPDATE_INTERVAL) {
-        return; // Throttle update frequency
-      }
-      lastMouseUpdate = now;
-
-      // Limit max influence radius for better performance & UX
-      const INFLUENCE_RADIUS = 150;
       particlesArray.forEach(p => {
-        const dx = mouse.x! - p.baseX;
-        const dy = mouse.y! - p.baseY;
-        const dist = dx * dx + dy * dy;
-        if (dist < INFLUENCE_RADIUS * INFLUENCE_RADIUS) {
-          // Move particle slightly towards mouse
-          p.x = p.baseX + dx * 0.05;
-          p.y = p.baseY + dy * 0.05;
-        } else {
-          // Reset to base position if outside influence
-          p.x += (p.baseX - p.x) * 0.05;
-          p.y += (p.baseY - p.y) * 0.05;
-        }
+        const dx = mouse.x - p.baseX;
+        const dy = mouse.y - p.baseY;
+        p.x = p.baseX + dx * 0.05;
+        p.y = p.baseY + dy * 0.05;
       });
     }
 
     function animate() {
-      draw();
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+
       update();
+      draw();
       animationFrameId = requestAnimationFrame(animate);
     }
 
@@ -143,8 +116,6 @@ export default function Particles() {
       particlesArray.forEach(p => {
         p.baseX = Math.random() * width;
         p.baseY = Math.random() * height;
-        p.x = p.baseX;
-        p.y = p.baseY;
       });
     }
 
@@ -165,4 +136,3 @@ export default function Particles() {
     />
   );
 }
-
