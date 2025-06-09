@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Particles from "@/components/Particles";
+import TypingText from "@/components/TypingText";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Lightbulb, Code, UserCircle, Send, Zap, Palette, Star } from "lucide-react";
@@ -24,6 +25,11 @@ export default function Home() {
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-foreground">
   Hello, I'm <span className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-foreground text-primary drop-shadow-lg glitch-text" data-text="Samudr4">Samudr4</span>
 </h1>
+
+		{/* TypingText component */}
+          <div className="mt-4">
+            <TypingText />
+          </div>
 
           <p className="mt-8 max-w-3xl mx-auto text-lg text-muted-foreground sm:text-xl md:text-2xl leading-relaxed">
             Embark on a journey through innovative projects, insightful articles, and discover the passion woven into every line of code.

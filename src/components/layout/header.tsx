@@ -37,10 +37,10 @@ const NavLink: React.FC<NavLinkProps> = ({ href, target, children, className, on
         target={target}
         onClick={onClick}
         className={cn(
-          "text-md font-medium transition-all duration-200 px-3 py-2 rounded-lg", // Added padding and rounded-lg for boxy feel
+          "text-md font-medium transition-all duration-200 px-3 py-2 rounded-lg",
           isActive
-            ? "bg-primary/10 text-primary font-semibold" // Active state with background
-            : "text-foreground/80 hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10", // Hover state with background
+            ? "bg-primary/10 text-primary font-semibold"
+            : "text-foreground/80 hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10",
           className
         )}
       >
@@ -49,7 +49,6 @@ const NavLink: React.FC<NavLinkProps> = ({ href, target, children, className, on
     </Link>
   );
 };
-
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -91,7 +90,9 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div style={{ width: 100, height: 100 }} className="transition-transform duration-300 hover:scale-110">
+          <div 
+            className="w-[100px] h-[100px] filter invert dark:invert-0 transition-transform duration-300 hover:scale-110"
+          >
             <DotLottieReact 
               src="/assets/cat.lottie" 
               loop 
@@ -106,14 +107,14 @@ export function Header() {
                 <span className="sr-only">Toggle Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-background p-6 shadow-xl"> {/* Adjusted max-w and padding */}
-              <div className="flex flex-col space-y-3"> {/* Reduced space-y */}
+            <SheetContent side="right" className="w-full max-w-xs bg-background p-6 shadow-xl">
+              <div className="flex flex-col space-y-3">
                 <div onClick={() => setMobileMenuOpen(false)}>{siteLogo}</div>
                 {navItems.map((item) => (
                   <NavLink 
                     key={item.href} 
                     href={item.href}
-                    className="text-lg py-2.5 block w-full text-left" // Adjusted text size, padding, and alignment
+                    className="text-lg py-2.5 block w-full text-left"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}
