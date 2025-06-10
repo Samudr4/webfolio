@@ -69,8 +69,10 @@ export default function Particles() {
         for (let j = i + 1; j < particlesArray.length; j++) {
           const dx = particlesArray[i].x - particlesArray[j].x;
           const dy = particlesArray[i].y - particlesArray[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 100) { // Adjust the distance threshold for line connections
+                    const distanceSquared = dx * dx + dy * dy;
+          // Consider defining a constant for the distance threshold, e.g., const PARTICLE_CONNECTION_THRESHOLD = 100;
+          // Then use: if (distanceSquared < PARTICLE_CONNECTION_THRESHOLD * PARTICLE_CONNECTION_THRESHOLD)
+          if (distanceSquared < 100 * 100) { // Compare squared distances to avoid Math.sqrt
             ctx.beginPath();
             ctx.strokeStyle = `rgba(${particlesArray[i].color}, ${particlesArray[i].opacity})`;
             ctx.lineWidth = 0.5; // Line width
