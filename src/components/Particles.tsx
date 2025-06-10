@@ -63,6 +63,25 @@ export default function Particles() {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       });
+
+      // Draw lines between particles
+      for (let i = 0; i < particlesArray.length; i++) {
+        for (let j = i + 1; j < particlesArray.length; j++) {
+          const dx = particlesArray[i].x - particlesArray[j].x;
+          const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distanceSquared = dx * dx + dy * dy;
+          // Consider defining a constant for the distance threshold, e.g., const PARTICLE_CONNECTION_THRESHOLD = 100;
+          // Then use: if (distanceSquared < PARTICLE_CONNECTION_THRESHOLD * PARTICLE_CONNECTION_THRESHOLD)
+          if (distanceSquared < 100 * 100) { // Compare squared distances to avoid Math.sqrt
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${particlesArray[i].color}, ${particlesArray[i].opacity})`;
+            ctx.lineWidth = 0.5; // Line width
+            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+            ctx.stroke();
+          }
+        }
+      }
     }
 
     function update() {
